@@ -1,0 +1,858 @@
+---
+title: "Arousal elicits a brain-wide hemodynamic wave independent of locus coeruleus noradrenergic tone"
+subtitle: "de Paz, ..., Macé<br>March 2026, bioRxiv"
+format:
+  revealjs:
+    css: styles.css
+    slide-number: true
+    mermaid:
+          theme: forest
+mermaid-format: svg # png also works
+---
+
+## Arousal as a continuously varying brain-body state
+
+```{mermaid}
+%%| fig-width: 10
+%%| fig-height: 3
+%%{init: {"flowchart": {"curve": "linear"}} }%%
+flowchart TB
+  A[Arousal<br/><span style='font-size:80%'>brain–body state</span>]
+
+  A --- P[pupil diameter]
+  A --- F[whisking]
+  A --- L[locomotion]
+  A --- H[heart rate]
+  A --- N[neuromodulatory tone]
+  A --- C[cortical state]
+```
+
+::: {.fragment .center}
+*Arousal is inferred from proxies, not directly observed.*
+:::
+
+::: {.notes}
+Arousal is a continuously varying brain-body state, and in awake mice we infer it from
+several proxies: pupil diameter, whisking, locomotion, heart rate, neuromodulatory tone,
+and cortical state.
+
+The important caveat is that none of these proxies is arousal itself. Pupil diameter is
+especially useful, but it is a scalar readout of a richer state.
+:::
+
+## Arousal as a continuously varying brain-body state
+
+:::: {.columns}
+::: {.column width="42%"}
+::: {.incremental}
+- Pupil = arousal proxy
+- Works in quiet wakefulness
+- Eye metrics track Awake/NREM/REM
+- Pupil–neural coupling is state-dependent
+:::
+:::
+::: {.column width="58%"}
+![McGinley *et al.*, 2015](figures/introduction/mcginley1.jpg)
+:::
+::::
+
+::: footer
+McGinley *et al.*, 2015; Vinck *et al.*, 2015; Turner *et al.*, 2023
+:::
+
+::: {.notes}
+a. Whole-cell recording + pupil + locomotion tracking.
+b. V1 L2/3 trace. Even quiet wake shows spontaneous pupil fluctuations. Dilation =
+   desynchronization (suppressed 2-10 Hz). Constriction = stronger 2-10 Hz rythmic synaptic
+   activity. 
+c. In A1 L5 pyramidal neurons, pupil diameter tightly anticorrelates with low-frequency
+   (2-10 Hz) synaptic activity.
+d. Pupil diameter tightly anticorrelates with CA1 ripple cocurrence.
+
+Take-home: pupil-linked arousal covaries with brain state even without overt movement.
+:::
+
+## Arousal changes sensory processing and behavior
+
+![McGinley *et al.*, 2015](figures/introduction/mcginley2.jpg)
+
+::: {.fragment .center}
+*Arousal is not just a confound, it changes computation.*
+:::
+
+::: footer
+McGinley *et al.*, 2015; Vinck *et al.*, 2015
+:::
+
+::: {.notes}
+The previous slide showed that pupil-linked arousal covaries with brain states.
+
+Here McGinley et al. show that these state changes matter for behavior. Mice performed
+an auditory detection task while the authors tracked pupil diameter and locomotion.
+
+During non-locomotion periods, task performance depended on pupil diameter. Hit rate
+peaked at intermediate pupil diameters, and lick latency was shortest at intermediate
+pupil diameters.
+
+Small pupils, corresponding to low arousal, and large pupils, corresponding to high
+arousal, were both associated with poorer performance.
+
+Locomotion was analyzed separately. It behaved more like a high-arousal regime, with
+reduced performance and increased lick latency.
+
+The neural correlate is also important: cortical gain in auditory cortex peaked at
+intermediate pupil diameter, and locomotion was associated with reduced gain.
+
+Take-home: arousal is not just a nuisance variable. It changes sensory processing and
+behavior, often nonlinearly.
+:::
+
+## Arousal can organize brain-wide dynamics
+
+:::: {.columns}
+
+::: {.column width="45%"}
+::: {.incremental}
+- Pupil = scalar readout
+- But arousal may be a richer dynamical process
+- Each readout is a different projection of that process
+- These dynamics predict brain-wide physiology
+:::
+:::
+::: {.column width="55%"}
+![Raut *et al.*, 2025](figures/introduction/raut1.png)
+:::
+::::
+
+::: footer
+Stringer *et al.*, 2019; Raut *et al.*, 2025
+:::
+
+::: {.notes}
+Raut et al. provide a useful conceptual bridge.
+
+They recorded widefield calcium imaging together with face videography in awake mice.
+From the video, they extracted pupil diameter and whisker motion. From imaging, they
+extracted cortex-wide calcium dynamics.
+
+The key interpretation is that all these observables are different projections of an
+underlying arousal-related dynamical process.
+
+Pupil diameter is therefore not the whole state. It is a scalar readout, or
+one-dimensional projection, of a richer process evolving over time.
+
+Their modeling uses time-delay embeddings of pupil diameter to reconstruct a latent
+arousal state and predict brain-wide calcium, metabolism, and hemodynamic signals.
+
+For our purposes, the technical details are less important than the conceptual point:
+arousal can organize structured brain-wide physiology on the timescale of seconds.
+:::
+
+## Arousal-linked hemodynamics are not just bulk activity
+
+:::: {.columns}
+::: {.column width="38%"}
+::: {.incremental}
+- fUSI = blood volume ≠ neural activity
+- Arousal evokes brain-wide blood-volume changes
+- Bulk firing misses key dynamics
+:::
+:::
+::: {.column width="62%"}
+![Landemard *et al.*, 2026](figures/introduction/landemard1.png){height=450}
+:::
+::::
+
+::: footer
+Landemard *et al.*, 2026
+:::
+
+::: {.notes}
+This slide connects the arousal story to the signal measured by fUS.
+
+Landemard et al. imaged blood volume with fUSI while simultaneously recording hundreds
+of neurons with Neuropixels probes, mainly in visual cortex and hippocampus.
+
+First click: they tried the standard approach. Take the average firing rate across
+neurons — the bulk firing rate — and fit a hemodynamic response function to predict
+blood volume. The HRF was monophasic and peaked about 1.8 seconds after neural activity,
+as expected.
+
+But this bulk model did not capture the blood-volume dynamics well. In particular,
+predictions tended to lag and missed the faster changes around whisking events.
+
+Second click: instead of averaging all neurons together, they sorted neurons by their
+correlation with whisking, used as an arousal marker. Some neurons increased with
+whisking: Arousal+ neurons. Others decreased with whisking: Arousal− neurons.
+
+They then modeled blood volume as the combined contribution of these two populations,
+each with its own HRF. Both HRFs were positive, but they had different timing: the
+Arousal+ filter peaked earlier, around 1.2 seconds, whereas the Arousal− filter peaked
+later, around 2.1 seconds, and was broader.
+
+This combined model predicted blood volume better than the bulk firing-rate model, both
+during whisking and outside whisking.
+
+Take-home: fUS blood-volume signals are not just average spiking activity. They can
+reflect the balance between arousal-linked neural populations with different coupling to
+blood volume.
+:::
+
+## Arousal-linked hemodynamics are not just bulk activity
+
+:::: {.columns}
+::: {.column width="38%"}
+- fUSI = blood volume ≠ neural activity
+- Arousal evokes brain-wide blood-volume changes
+- Opposing arousal-linked populations predict better
+:::
+::: {.column width="62%"}
+![Landemard *et al.*, 2026](figures/introduction/landemard2.png){height=450}
+:::
+::::
+
+::: footer
+Landemard *et al.*, 2026
+:::
+
+::: {.notes}
+This slide connects the arousal story to the signal measured by fUSI.
+
+Landemard et al. imaged blood volume with fUSI while simultaneously recording hundreds
+of neurons with Neuropixels probes, mainly in visual cortex and hippocampus.
+
+First click: they tried the standard approach. Take the average firing rate across
+neurons — the bulk firing rate — and fit a hemodynamic response function to predict
+blood volume. The HRF was monophasic and peaked about 1.8 seconds after neural activity,
+as expected.
+
+But this bulk model did not capture the blood-volume dynamics well. In particular,
+predictions tended to lag and missed the faster changes around whisking events.
+
+Second click: instead of averaging all neurons together, they sorted neurons by their
+correlation with whisking, used as an arousal marker. Some neurons increased with
+whisking: Arousal+ neurons. Others decreased with whisking: Arousal− neurons.
+
+They then modeled blood volume as the combined contribution of these two populations,
+each with its own HRF. Both HRFs were positive, but they had different timing: the
+Arousal+ filter peaked earlier, around 1.2 seconds, whereas the Arousal− filter peaked
+later, around 2.1 seconds, and was broader.
+
+This combined model predicted blood volume better than the bulk firing-rate model, both
+during whisking and outside whisking.
+
+Take-home: fUSI blood-volume signals are not just average spiking activity. They can
+reflect the balance between arousal-linked neural populations with different coupling to
+blood volume.
+:::
+
+## Brain-wide activity is not necessarily arousal-specific
+
+:::: {.columns}
+
+::: {.column width="42%"}
+::: {.incremental}
+- Brain-wide recordings during visual decisions
+- Action-related activity is widespread
+:::
+:::
+
+::: {.column width="58%"}
+![Steinmetz *et al.*, 2019](figures/introduction/steinmetz1.png){height=350}
+:::
+
+::::
+
+::: footer
+Steinmetz *et al.*, 2019
+:::
+
+::: {.notes}
+This slide adds an important caveat.
+
+So far, I have been building the case that arousal can organize brain-wide physiology
+and hemodynamics. But brain-wide activity is not automatically an arousal signal.
+
+First click: Steinmetz et al. used brain-wide Neuropixels recordings during a visual
+decision task. In this analysis, they fit kernels to identify which neurons carried
+visual, action, or choice-related signals. The crop shown here is for the Action kernel.
+The key point is that neurons whose pre-movement activity was needed to predict action
+were distributed very broadly across the brain.
+
+This means action initiation can generate brain-wide neural activity, even when that
+activity is not specific to the chosen side or sensory stimulus.
+
+Second click: they also defined an engagement index from pre-stimulus population
+activity. This index was computed by projecting each trial’s pre-stimulus activity onto
+the axis separating task and passive contexts.
+
+The engagement index predicted whether the animal would make a Go response, and it
+differed between Go and Miss trials across recordings. Importantly, the authors report
+that this could not be fully explained by pupil diameter, overt movement, previous
+reward, or inter-trial interval.
+
+So the caution is: brain-wide signals can reflect arousal, but they can also reflect
+action initiation, task engagement, or other global state variables.
+
+This matters for the target paper because the authors need to show that the fUS wave is
+genuinely arousal-linked, and not simply a movement/action/engagement-related wave.
+:::
+
+## Brain-wide activity is not necessarily arousal-specific
+
+:::: {.columns}
+
+::: {.column width="42%"}
+- Brain-wide recordings during visual decisions
+- Action-related activity is widespread
+- Engagement is also a brain-wide pre-stimulus state
+:::
+
+::: {.column width="58%"}
+![Steinmetz *et al.*, 2019](figures/introduction/steinmetz2.png){height=350}
+:::
+
+::::
+
+::: footer
+Steinmetz *et al.*, 2019
+:::
+
+::: {.notes}
+This slide adds an important caveat.
+
+So far, I have been building the case that arousal can organize brain-wide physiology
+and hemodynamics. But brain-wide activity is not automatically an arousal signal.
+
+First click: Steinmetz et al. used brain-wide Neuropixels recordings during a visual
+decision task. In this analysis, they fit kernels to identify which neurons carried
+visual, action, or choice-related signals. The crop shown here is for the Action kernel.
+The key point is that neurons whose pre-movement activity was needed to predict action
+were distributed very broadly across the brain.
+
+This means action initiation can generate brain-wide neural activity, even when that
+activity is not specific to the chosen side or sensory stimulus.
+
+Second click: they also defined an engagement index from pre-stimulus population
+activity. This index was computed by projecting each trial’s pre-stimulus activity onto
+the axis separating task and passive contexts.
+
+The engagement index predicted whether the animal would make a Go response, and it
+differed between Go and Miss trials across recordings. Importantly, the authors report
+that this could not be fully explained by pupil diameter, overt movement, previous
+reward, or inter-trial interval.
+
+So the caution is: brain-wide signals can reflect arousal, but they can also reflect
+action initiation, task engagement, or other global state variables.
+
+This matters for the target paper because the authors need to show that the fUS wave is
+genuinely arousal-linked, and not simply a movement/action/engagement-related wave.
+:::
+
+## LC–NE: the canonical arousal system
+
+:::: {.columns}
+
+::: {.column width="42%"}
+::: {.incremental}
+- LC sends broad noradrenergic projections
+- LC stimulation rapidly dilates the pupil
+- NE axons precede rapid pupil dilations
+- Natural candidate for global arousal-linked hemodynamics
+:::
+:::
+::: {.column width="58%"}
+![Reimer *et al.*, 2016](figures/introduction/reimer1.png)
+:::
+::::
+
+::: footer
+Carter *et al.*, 2010; Reimer *et al.*, 2016; Poe *et al.*, 2020
+:::
+
+::: {.notes}
+This slide introduces why LC–NE is the obvious mechanistic candidate for an
+arousal-linked brain-wide signal.
+
+Reimer et al. imaged neuromodulatory axons in cortex while tracking pupil and
+locomotion. The schematic shows broad cholinergic projections from basal forebrain and
+noradrenergic projections from locus coeruleus to cortex.
+
+The key point is that pupil dynamics track these neuromodulatory systems. In particular,
+activity in noradrenergic axons precedes small, rapid pupil dilations during stillness.
+Cholinergic axons also track pupil dilations, but somewhat less tightly for these rapid
+events.
+
+They also show causality in the LC direction: stimulation of LC, but not nearby tissue,
+produces a large, rapid pupil dilation.
+
+So, before reading the target paper, it is very natural to hypothesize that an
+arousal-linked hemodynamic wave might be driven by LC–NE activity.
+
+At the same time, this figure already hints that pupil-linked arousal is not exclusively
+LC: cholinergic activity also tracks pupil dynamics, especially for broader/sustained
+arousal states.
+:::
+
+## Questions of the paper
+
+:::: {.columns}
+
+::: {.column width="48%"}
+::: {.incremental}
+1. What is the **spatiotemporal structure** of arousal-driven hemodynamics?
+2. Is it shared between **spontaneous** and **sensory-driven** arousal?
+3. Is this wave dependent on **LC–NE tone**?
+:::
+:::
+::: {.column width="52%"}
+```{mermaid}
+%%| fig-width: 5
+%%| fig-height: 5
+%%{init: {"flowchart": {"curve": "linear"}} }%%
+flowchart LR
+  S[Spontaneous arousal<br/><span style='font-size:80%'>pupil dilation</span>] --> W[Brain-wide<br/>hemodynamic wave]
+  E[Sensory-driven arousal<br/><span style='font-size:80%'>evoked pupil dilation</span>] --> W
+
+  LC[Locus coeruleus<br/>noradrenaline] -. necessary? .-> W
+```
+:::
+::::
+
+::: {.notes}
+This is where we enter the actual paper.
+
+The authors are not only asking whether LC drives an arousal signal. The first question
+is more descriptive and more fundamental.
+
+Arousal is known to shape physiology, behavior, perception, and task performance. It is
+also known to drive brain-wide activity, sometimes more strongly than sensory or task
+variables.
+
+But what is the structure of that effect? Is it a global increase everywhere, a
+traveling wave, a region-specific sequence, or something else?
+
+The second question is whether this structure is shared between spontaneous arousal
+events and sensory-driven arousal events.
+
+Only after establishing that there is a stereotyped arousal-linked hemodynamic wave do
+they ask the mechanistic question: does this wave depend on locus coeruleus
+noradrenergic tone?
+:::
+
+## Spontaneous arousal fluctuations have brain-wide fUSI correlates
+
+![](figures/final/fig1.png)
+
+::: {.notes}
+This first figure introduces the experimental setup and gives the first descriptive
+result.
+
+Panel a shows the virtual burrow setup with fUS imaging, pupil and face video, and
+burrow motion tracking.
+
+Panel b shows the fUS imaging coverage and registration to the Allen atlas. A useful
+limitation to mention is that some lateral regions, such as temporal, insular and
+piriform cortices, are mostly outside the imaging window.
+
+Panel c shows spontaneous fluctuations in pupil, face motion and burrow motion during
+stimulus-free recordings.
+
+Panel d quantifies the cross-correlations between pupil and the behavioral readouts.
+
+Panels e and f show the main result: spontaneous pupil fluctuations correlate with fUS
+signals across many brain regions, but the map is heterogeneous rather than uniform.
+
+Take-home: spontaneous arousal fluctuations are associated with broad, structured
+hemodynamic correlates.
+:::
+
+## Spontaneous arousal fluctuations have brain-wide fUSI correlates
+
+<video controls class="hemo-video">
+  <source src="figures/final/hemodynamic_wave.mp4" type="video/mp4">
+</video>
+
+<br> 
+
+::: {.fragment}
+*Spontaneous arousal fluctuations correlate with fUS signals across the
+brain, but the pattern is spatially heterogeneous.*
+:::
+
+::: {.notes}
+The key take-home from Figure 1 is not just that pupil correlates with fUS.
+
+The important point is that spontaneous arousal fluctuations have broad but
+heterogeneous brain-wide hemodynamic correlates.
+
+This motivates the next analysis: instead of only asking where pupil correlates with
+fUS, the authors ask whether arousal events have a stereotyped spatiotemporal structure.
+:::
+
+## Spontaneous and evoked arousal recruit shared "arousal regions"
+
+![](figures/final/fig2.png)
+
+::: {.notes}
+Figure 2 introduces the sensory-evoked arousal condition and compares it to spontaneous
+pupil events.
+
+Panel a shows the air puff stimulation used to evoke sensory-driven arousal.
+
+Panel b shows an example recording with both spontaneous events and air-puff-evoked
+pupil responses. The important point is that the authors can compare naturally occurring
+pupil-linked arousal events with sensory-evoked pupil dilations.
+
+Panels c and d show the brain-wide fUS response amplitude maps. Panel c is for
+spontaneous pupil events, and panel d is for air puffs.
+
+Panels e to g ask whether the same regions are recruited in both conditions. The Venn
+diagram and shared-region maps show substantial overlap between spontaneous and evoked
+arousal responses.
+
+Take-home: spontaneous and sensory-driven arousal recruit overlapping fUSI-defined
+arousal regions. This answers the generality question at the regional level, but not yet
+at the level of temporal dynamics.
+:::
+
+## Arousal propagates from brainstem to cortex
+
+![](figures/final/fig3.png)
+
+::: {.notes}
+Figure 2 showed that spontaneous and evoked arousal recruit overlapping brain regions.
+
+Figure 3 asks whether the temporal structure of the response is also shared.
+
+Panel a maps the time-to-peak of the fUS response across coronal slices, separately for
+spontaneous pupil events and air puffs.
+
+The key visual result is a temporal gradient: the response peaks earlier in brainstem
+and subcortical regions, and later in cortical regions.
+
+Panel b shows this across regions as a heatmap of time-to-peak for spontaneous and
+evoked arousal.
+
+Panel c directly compares each region’s time-to-peak for spontaneous versus evoked
+arousal. The relationship suggests that regions activated early or late in one condition
+tend to be early or late in the other condition as well.
+
+Panel d shows average time courses for broad anatomical macro-regions. These traces make
+the sequence clearer.
+
+Panel e computes the relative sequence of activation using lag relative to the global
+mean. Again, the ordering is consistent for spontaneous and evoked arousal.
+
+Panel f summarizes the relative ranked sequence across brain regions.
+
+Take-home: the shared arousal response is not just a set of overlapping regions. It has
+a consistent spatiotemporal structure, with a brainstem-to-cortex temporal gradient, and
+this sequence is shared between spontaneous and sensory-driven arousal.
+:::
+
+## PCA captures the shared arousal wave
+
+![](figures/final/fig4.png){width=95% fig-align="center"}
+
+::: {.notes}
+Figure 3 showed the arousal response as a temporal gradient across regions, from
+brainstem to cortex.
+
+Figure 4 asks whether this shared wave can be captured in a lower-dimensional
+representation of the fUS signal.
+
+Panel a shows the group PCA approach. They compute session-level covariance matrices
+from stimulus-free recordings, average them, and decompose this group covariance matrix
+to obtain spatial principal components. Then they project new fUS sessions, including
+both spontaneous recordings and air-puff sessions, onto these components to get temporal
+weights.
+
+Panel b shows the explained variance of the first PCs.
+
+Panel c shows the spatial maps of PC1 and PC2. These are the main arousal-related
+spatial components.
+
+Panel d shows that PC1 and PC2 are both correlated with the pupil trace, but with
+different temporal shifts. This is important because the wave is not captured by a
+single global component; at least two components are needed to describe the temporal
+structure.
+
+Panel e shows the variance explained by PC1 and PC2 over time around spontaneous and
+evoked arousal events.
+
+Panel f shows the time-locked temporal weights of these arousal-related components. The
+dynamics are similar for spontaneous and evoked arousal.
+
+Panel g shows the resulting trajectory in PCA space. Spontaneous and evoked arousal
+follow similar low-dimensional trajectories.
+
+Take-home: the arousal-linked hemodynamic wave can be summarized as a shared
+low-dimensional trajectory, rather than unrelated region-by-region responses.
+:::
+
+## LC–NE manipulations change global perfusion
+
+![](figures/final/fig5.png){width=95% fig-align="center"}
+
+::: {.notes}
+Figure 5 starts the mechanistic part of the paper.
+
+Until now, the authors have established that spontaneous and evoked arousal recruit
+overlapping fUS regions and follow a shared brainstem-to-cortex temporal gradient.
+
+Now they ask whether locus coeruleus noradrenergic tone is necessary for these
+hemodynamic dynamics.
+
+Panel a shows the viral strategy in NAT-Cre mice, with opsins targeted to noradrenergic
+neurons for activation and inhibition cohorts.
+
+Panel b shows the optogenetic setup. One important detail is that the fUS field of view
+is shorter here because of the optic fiber placement.
+
+Panels c and d show the behavioral effects of sustained optogenetic stimulation,
+including pupil size. This verifies that the manipulations affect arousal-related
+physiology.
+
+Panels e and f show the global fUS signal during optogenetic stimulation. LC activation
+and inhibition bidirectionally affect global perfusion.
+
+Panel g shows the voxelwise fUS correlation maps with the optogenetic stimulation vector
+for activation and inhibition cohorts.
+
+The key take-home is that the LC manipulation is not weak or ineffective. Sustained
+manipulation of noradrenergic tone clearly changes brain perfusion and global fUS
+signal.
+
+This is important because the next question is sharper: even though LC–NE tone changes
+perfusion, does it actually determine the arousal-linked wave structure?
+:::
+
+## LC–NE tone is not required for the arousal wave
+
+![](figures/final/fig6.png){width=95% fig-align="center"}
+
+::: {.notes}
+Figure 5 showed that the optogenetic manipulations of noradrenergic tone clearly affect
+global brain perfusion.
+
+Figure 6 now asks the critical question: do these manipulations disrupt the
+arousal-linked hemodynamic wave?
+
+Panel a shows the stimulus-free optogenetic manipulation paradigm.
+
+Panel b shows normalized brain-wide fUS response amplitude for spontaneous pupil events
+during concurrent optogenetic manipulation, across the control, LC activation, and LC
+inhibition cohorts.
+
+Panel c compares regional response amplitudes between controls and either ChR2
+activation or ACR2 inhibition. If LC tone were necessary for the arousal wave, we might
+expect strong disruption or loss of correspondence with controls.
+
+Instead, the regional response structure is largely preserved.
+
+Panels d to f repeat the same logic for air-puff-evoked arousal during concurrent
+optogenetic manipulation. Again, the arousal-related response pattern is maintained.
+
+The key result is that even though LC–NE manipulations affect global perfusion, they do
+not abolish or strongly impair the spatial structure of the arousal-linked fUS response.
+
+Take-home: LC noradrenergic tone modulates brain perfusion, but the arousal wave itself
+persists during both LC activation and inhibition.
+:::
+
+## Main take-home
+
+<br>
+
+*Arousal is not a uniform global signal.*
+
+<br>
+
+::: {.incremental}
+- Spontaneous and evoked arousal recruit overlapping fUSI regions
+- Both conditions follow a **subcortex-to-cortex temporal gradient**
+- The wave is captured by a low-dimensional fUSI subspace
+- LC–NE tone changes perfusion, but does **not** abolish the wave
+:::
+
+::: {.notes}
+This is the main synthesis of the results.
+
+The paper does not simply show that arousal increases brain-wide fUSI signal. Instead,
+it shows that arousal has a structured spatiotemporal organization.
+
+Spontaneous pupil events and sensory-evoked arousal recruit overlapping regions, and
+these responses follow a consistent temporal sequence from subcortical regions toward
+cortex.
+
+The PCA analysis shows that this wave is not only visible in event averages. It is also
+embedded in ongoing resting-state fUSI activity as a low-dimensional structure.
+
+Finally, LC manipulations strongly affect vascular signal amplitude, so they are not
+ineffective. But they do not abolish the arousal-linked wave.
+
+So the take-home is: arousal evokes a stereotyped brain-wide hemodynamic wave, but this
+wave is not simply tonic LC–NE tone.
+:::
+
+## Interpretation
+
+<br>
+
+:::: {.columns}
+::: {.column width="50%"}
+#### What the wave may reflect
+::: {.incremental}
+- a generalized arousal state
+- bottom-up subcortical → cortical recruitment
+- shared latent dynamics across spontaneous and sensory-driven arousal
+:::
+:::
+::: {.column width="50%"}
+#### What LC–NE may do
+::: {.incremental}
+- modulates vascular/perfusion baseline
+- contributes to arousal physiology
+- not sufficient to reproduce the full wave
+:::
+:::
+::::
+
+::: {.fragment}
+*LC–NE modulates the system, but may not generate the arousal wave.*
+:::
+
+::: {.notes}
+This is how I would interpret the paper.
+
+The authors propose that spontaneous and evoked arousal share a common latent structure.
+This fits with the idea of generalized arousal: different triggers can bring the animal
+into a similar brain-body state.
+
+The subcortex-to-cortex sequence suggests that arousal is not just a synchronous global
+gain change. It unfolds over time.
+
+The LC result is subtle. LC is still relevant to arousal. The optogenetic manipulation
+changed pupil and global perfusion, so noradrenaline clearly affects brain and body
+state.
+
+But sustained LC activation or inhibition did not reproduce the wave, and did not
+prevent the wave during spontaneous or evoked arousal.
+
+So a careful conclusion is: tonic LC–NE tone is not the primary driver of this fUSI
+arousal wave. Other systems, especially acetylcholine, or interactions among multiple
+neuromodulators, may be more important.
+:::
+
+## Caveats
+
+::: {.incremental}
+- **fUSI is hemodynamic**: blood volume is an indirect proxy for neural activity.
+- **Movement is intertwined with arousal**: controlled, but residual motor contributions
+  cannot be excluded.
+- **LC manipulation was tonic**: phasic LC activity or projection-specific LC effects
+  may still matter.
+- **Optogenetics may affect neurovascular coupling**: especially because noradrenaline
+  can act on vascular tone.
+:::
+
+::: {.notes}
+This is the slide for journal club discussion.
+
+First, fUSI measures blood volume, not neural activity directly. The authors support a
+neural interpretation using prior fUS literature and fiber photometry controls, but the
+signal remains hemodynamic.
+
+Second, movement and arousal are tightly coupled. The authors use mild air puffs,
+partial correlations, light-driven pupil controls, and anesthesia controls, but residual
+motor contributions cannot be completely ruled out.
+
+Third, the LC manipulation is sustained and tonic. The result argues against tonic
+noradrenergic tone as the primary driver, but it does not rule out phasic LC
+contributions, projection-specific LC effects, or incomplete inhibition.
+
+Fourth, because noradrenaline affects vascular tone, LC optogenetic manipulation might
+alter neurovascular coupling itself.
+
+Finally, the wave’s causal generator is still open. The authors point toward other
+neuromodulatory mechanisms, especially acetylcholine, but the circuit mechanism remains
+a natural next question.
+:::
+
+## Conclusion
+
+<br><br><br>
+
+::: {.center}
+*Arousal engages a heterogenous, brain-wide hemodynamic wave independent of
+noradrenergic tone.*
+:::
+
+::: {.notes}
+This is the final one-sentence conclusion.
+
+Arousal is not just a global scalar or a confound to regress out. In this paper, it
+appears as a reproducible brain-wide dynamical motif.
+
+The open question is what circuit mechanism generates this motif if tonic LC
+noradrenergic tone is not sufficient or necessary.
+:::
+
+## Supplementary figure S1
+
+![](figures/supp-final/figS1.png){width=95%}
+
+## Supplementary figure S2
+
+![](figures/supp-final/figS2.png){width=95%}
+
+## Supplementary figure S3
+
+![](figures/supp-final/figS3.png){width=95%}
+
+## Supplementary figure S4
+
+![](figures/supp-final/figS4.png){width=95%}
+
+## Supplementary figure S5
+
+![](figures/supp-final/figS5.png){width=95%}
+
+## Supplementary figure S6
+
+![](figures/supp-final/figS6.png){width=95%}
+
+## Supplementary figure S7
+
+![](figures/supp-final/figS7.png){width=95%}
+
+## Supplementary figure S8
+
+![](figures/supp-final/figS8.png){width=95%}
+
+## Supplementary figure S9
+
+![](figures/supp-final/figS9.png){width=95%}
+
+## Supplementary figure S10
+
+![](figures/supp-final/figS10.png){width=95%}
+
+## Supplementary video 1 {.video-slide}
+
+<video controls class="supp-video">
+  <source src="media-2/SuppMovie1_spontaneous.mp4" type="video/mp4">
+</video>
+
+## Supplementary video 2 {.video-slide}
+
+<video controls class="supp-video">
+  <source src="media-2/SuppMovie2_evokedAwake.mp4" type="video/mp4">
+</video>
+
+## Supplementary video 3 {.video-slide}
+
+<video controls class="supp-video">
+  <source src="media-2/SuppMovie3_evokedFMM.mp4" type="video/mp4">
+</video>

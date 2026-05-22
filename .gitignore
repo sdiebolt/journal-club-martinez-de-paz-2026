@@ -1,0 +1,15 @@
+.quarto/
+*_files/
+slides.html
+
+# intermediate exports / scratch
+figures/pages/
+figures/supp-pages/
+figures/raut-pages/
+figures/steinmetz-pages/
+figures/reimer-pages/
+figures/raw/
+figures/real/
+
+# OS/editor
+.DS_Store

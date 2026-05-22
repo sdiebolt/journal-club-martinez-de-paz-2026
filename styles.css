@@ -1,0 +1,53 @@
+#title-slide h1.title {
+  font-size: 2.0em;
+  line-height: 1.2;
+}
+
+.reveal .slides section img,
+.reveal .slides section video {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.reveal .slides section.video-slide {
+  display: flex !important;
+  flex-direction: column;
+  height: 100% !important;
+}
+
+.reveal .slides section.video-slide > h2 {
+  flex: 0 0 auto;
+}
+
+.reveal .slides section.video-slide > .supp-video {
+  flex: 1 1 auto;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.reveal .slides .intro-media {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 340px;
+  width: auto;
+  max-width: 100%;
+}
+
+.reveal .slides figcaption {
+  text-align: right !important;
+  font-size: 0.65em;
+  color: #8a8a8a;
+}
+
+.reveal .slides .hemo-video {
+  width: 90%;
+  max-height: 68vh;
+}
+
+.reveal .slides .caption {
+  text-align: right !important;
+  font-size: 0.65em;
+  color: #8a8a8a;
+}
