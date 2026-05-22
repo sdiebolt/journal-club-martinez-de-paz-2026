@@ -17,35 +17,59 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 25
     steps:
+      - name: CI heartbeat
+        run: |
+          echo "Job started at $(date -u)"
+          uname -a
+
       - name: Checkout
+        timeout-minutes: 5
         uses: actions/checkout@v4
 
-      - name: Setup Quarto
-        uses: quarto-dev/quarto-actions/setup@v2
-
-      - name: Debug environment
+      - name: After checkout
         run: |
-          echo "=== tool versions ==="
-          quarto --version
-          python3 --version || true
-          node --version || true
-          echo "=== quarto check ==="
-          quarto check || true
-          echo "=== repo files ==="
+          echo "Checkout done at $(date -u)"
           ls -lah
 
-      - name: Render slides
+      - name: Setup Quarto
+        timeout-minutes: 5
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Quarto version
+        run: |
+          echo "Quarto setup done at $(date -u)"
+          quarto --version
+
+      - name: Quarto check
+        timeout-minutes: 5
+        run: quarto check
+
+      - name: Render slides (debug logs to console)
         timeout-minutes: 15
         run: |
-          set -euxo pipefail
-          quarto render slides.qmd
+          set -euo pipefail
+          quarto render slides.qmd \
+            --log-level debug \
+            --log-format plain \
+            2>&1 | tee quarto-render.log
 
       - name: Debug rendered output
         if: always()
         run: |
           echo "=== rendered artifacts ==="
           ls -lah slides.html slides_files || true
+          echo "=== tail quarto log ==="
+          tail -n 300 quarto-render.log || true
+
+      - name: Upload render log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: quarto-render-log
+          path: quarto-render.log
+          if-no-files-found: ignore
 
       - name: Prepare deploy directory
         run: |

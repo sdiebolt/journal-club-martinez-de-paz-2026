@@ -7,7 +7,6 @@ format:
     slide-number: true
     mermaid:
           theme: forest
-mermaid-format: svg # png also works
 ---
 
 ## Arousal as a continuously varying brain-body state
@@ -423,6 +422,7 @@ involves multiple neuromodulatory systems.
 :::
 :::
 ::: {.column width="52%"}
+<br>
 ```{mermaid}
 %%| fig-width: 5
 %%| fig-height: 5
