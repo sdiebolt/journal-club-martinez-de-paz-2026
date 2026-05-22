@@ -1,6 +1,6 @@
 ---
 title: "Arousal elicits a brain-wide hemodynamic wave independent of locus coeruleus noradrenergic tone"
-subtitle: "de Paz, ..., Macé<br>March 2026, bioRxiv"
+subtitle: "Martinez de Paz, ..., Macé<br>March 2026, bioRxiv"
 format:
   revealjs:
     css: styles.css
@@ -553,7 +553,7 @@ this sequence is shared between spontaneous and sensory-driven arousal.
 
 ## PCA captures the shared arousal wave
 
-![](figures/final/fig4.png){width=95% fig-align="center"}
+![](figures/final/fig4.png)
 
 ::: {.notes}
 Figure 3 showed the arousal response as a temporal gradient across regions, from
@@ -593,7 +593,7 @@ low-dimensional trajectory, rather than unrelated region-by-region responses.
 
 ## LC–NE manipulations change global perfusion
 
-![](figures/final/fig5.png){width=95% fig-align="center"}
+![](figures/final/fig5.png)
 
 ::: {.notes}
 Figure 5 starts the mechanistic part of the paper.
@@ -630,7 +630,7 @@ perfusion, does it actually determine the arousal-linked wave structure?
 
 ## LC–NE tone is not required for the arousal wave
 
-![](figures/final/fig6.png){width=95% fig-align="center"}
+![](figures/final/fig6.png)
 
 ::: {.notes}
 Figure 5 showed that the optogenetic manipulations of noradrenergic tone clearly affect
@@ -801,43 +801,43 @@ noradrenergic tone is not sufficient or necessary.
 
 ## Supplementary figure S1
 
-![](figures/supp-final/figS1.png){width=95%}
+![](figures/supp-final/figS1.png)
 
 ## Supplementary figure S2
 
-![](figures/supp-final/figS2.png){width=95%}
+![](figures/supp-final/figS2.png)
 
 ## Supplementary figure S3
 
-![](figures/supp-final/figS3.png){width=95%}
+![](figures/supp-final/figS3.png)
 
 ## Supplementary figure S4
 
-![](figures/supp-final/figS4.png){width=95%}
+![](figures/supp-final/figS4.png)
 
 ## Supplementary figure S5
 
-![](figures/supp-final/figS5.png){width=95%}
+![](figures/supp-final/figS5.png)
 
 ## Supplementary figure S6
 
-![](figures/supp-final/figS6.png){width=95%}
+![](figures/supp-final/figS6.png)
 
 ## Supplementary figure S7
 
-![](figures/supp-final/figS7.png){width=95%}
+![](figures/supp-final/figS7.png)
 
 ## Supplementary figure S8
 
-![](figures/supp-final/figS8.png){width=95%}
+![](figures/supp-final/figS8.png)
 
 ## Supplementary figure S9
 
-![](figures/supp-final/figS9.png){width=95%}
+![](figures/supp-final/figS9.png)
 
 ## Supplementary figure S10
 
-![](figures/supp-final/figS10.png){width=95%}
+![](figures/supp-final/figS10.png)
 
 ## Supplementary video 1 {.video-slide}
 

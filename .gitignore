@@ -13,3 +13,6 @@ figures/real/
 
 # OS/editor
 .DS_Store
+
+/.quarto/
+**/*.quarto_ipynb
