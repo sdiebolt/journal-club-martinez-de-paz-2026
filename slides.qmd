@@ -81,19 +81,21 @@ McGinley *et al.*, 2015; Vinck *et al.*, 2015; Turner *et al.*, 2023
 - McGinley et al. combined whole-cell recordings with pupil tracking and locomotion
   monitoring.
 
-- Panel a shows the basic setup: neural recording, pupil camera, and locomotion tracking.
+- First, the pupil size can track fast fluctuations in brain state during quiet
+  wakefulness. Here you can see that in V1 layer 2/3:
+  - Pupil dilation is associated with cortical desynchronization, meaning suppression of
+    2–10 Hz rhythmic activity.
+  - Pupil constriction is associated with stronger low-frequency rhythmic synaptic
+    activity.
+  - These are changes on the order of seconds.
 
-- Panel b shows an example from V1 layer 2/3.
-  - Even during quiet wakefulness, the pupil fluctuates spontaneously.
-  - Pupil dilation is associated with cortical desynchronization, meaning suppression of 2–10 Hz rhythmic activity.
-  - Pupil constriction is associated with stronger low-frequency rhythmic synaptic activity.
+- Pupil size also tracks slow fluctuations across sleep-wake states: 
+  - In layer 5 A1 pyramidal neurons, pupil diameter anticorrelates with low-frequency
+    synaptic activity.
+  - In CA1, pupil diameter also anticorrelates with CA1 ripple occurence.
 
-- Panel c shows a similar relationship in auditory cortex.
-  - In layer 5 A1 pyramidal neurons, pupil diameter anticorrelates with low-frequency synaptic activity.
-
-- Panel d shows that pupil diameter also anticorrelates with CA1 ripple occurrence.
-
-Take-home: pupil-linked arousal covaries with neural state even in the absence of overt locomotion.
+Take-home: pupil-linked arousal covaries with neural state even in the absence of overt
+locomotion.
 :::
 
 ## Arousal changes sensory processing and behavior
@@ -109,8 +111,8 @@ McGinley *et al.*, 2015; Vinck *et al.*, 2015
 :::
 
 ::: {.notes}
-- The previous slide showed that pupil-linked arousal tracks brain state.
-- Here, the key point is that these state changes matter for behavior.
+- So pupil-linked arousal can track brain state. But one reason we're interested in
+  arousal is that these state changes matter for behavior.
 
 - McGinley et al. trained mice on an auditory detection task while tracking pupil
   diameter and locomotion.
@@ -156,9 +158,13 @@ Stringer *et al.*, 2019; Raut *et al.*, 2025
 :::
 
 ::: {.notes}
-- Now we move from local brain state and behavior to brain-wide dynamics.
+- Now that we have a better understanding of pupil-linked arousal, we can ask how it
+  relates to brain-wide dynamics.
+- There is a growing body of evidence that arousal is not just a scalar readout, but rather a
+  richer dynamical process that unfolds over seconds to minutes. For exemple the
+  Stringer et al. 2019 paper from the lab, or this recent by Raut et al. 2025 that was
+  previously presented in a journal club by Agnes.
 
-- Raut et al. provide a useful conceptual bridge.
 - They recorded widefield calcium imaging together with face videography in awake mice.
 
 - From the video, they extracted pupil diameter and whisker motion.
