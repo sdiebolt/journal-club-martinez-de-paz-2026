@@ -24,8 +24,28 @@ jobs:
       - name: Setup Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
-      - name: Render slides
-        run: quarto render slides.qmd
+      - name: Debug environment
+        run: |
+          echo "=== tool versions ==="
+          quarto --version
+          python3 --version || true
+          node --version || true
+          echo "=== quarto check ==="
+          quarto check || true
+          echo "=== repo files ==="
+          ls -lah
+
+      - name: Render slides (verbose)
+        timeout-minutes: 15
+        run: |
+          set -euxo pipefail
+          quarto render slides.qmd --log-level debug
+
+      - name: Debug rendered output
+        if: always()
+        run: |
+          echo "=== rendered artifacts ==="
+          ls -lah slides.html slides_files || true
 
       - name: Prepare deploy directory
         run: |
