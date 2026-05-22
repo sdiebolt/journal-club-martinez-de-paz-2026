@@ -35,11 +35,11 @@ jobs:
           echo "=== repo files ==="
           ls -lah
 
-      - name: Render slides (verbose)
+      - name: Render slides
         timeout-minutes: 15
         run: |
           set -euxo pipefail
-          quarto render slides.qmd --log-level debug
+          quarto render slides.qmd
 
       - name: Debug rendered output
         if: always()
